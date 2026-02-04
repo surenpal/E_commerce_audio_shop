@@ -21,6 +21,20 @@ const Navbar = () => {
             <FaCaretDown />
            </div>
         </div>
+
+
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>Products</li>
+            <li>About</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+
+
+
+
       </div> 
     </div>
   )

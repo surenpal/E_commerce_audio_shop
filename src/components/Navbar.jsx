@@ -12,6 +12,7 @@ const Navbar = () => {
           <Link to="/" className='font-bold text-3xl'><span className='text-blue-500 font-serif'>B</span>a<span  className= "text-red-500 font-serif">s</span>s</Link>
            <div className='flex gap-1 cursor-pointer text-gray-700 items-center'>
             <MapPin className='text-red-500'/>
+            <span className='font-semibold'>{Location}</span>
            </div>
         </div>
       </div> 

@@ -1,8 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <div className='bg-white py-3 shadow-2xl'>
+      
+      <div className='max-w-6xl mx-auto flex justify-between items-center'>
+        <div className='text-2xl font-bold'>
+          {/* Logo or Brand Name */}
+          <Link to="/" className='font-bold text-3xl'><span className='text-blue-500 font-serif'>B</span>a<span  className= "text-red-500 font-serif">s</span>s</Link>
+          
+          </div>
+      </div> 
+
+      </div>
   )
 }
 

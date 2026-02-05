@@ -25,10 +25,10 @@ const Navbar = () => {
 
         <nav>
           <ul className='flex gap-7 text-xl font-semibold'>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/products">Products</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>Home</NavLink>
+            <NavLink to="/products" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>Products</NavLink>
+            <NavLink to="/about" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>About</NavLink>
+            <NavLink to="/contact" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>Contact</NavLink>
           </ul>
         </nav>
 

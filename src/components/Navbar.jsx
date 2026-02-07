@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link , NavLink} from 'react-router-dom';
-  import { MapPin } from 'lucide-react';
-  import {FaCaretDown} from 'react-icons/fa6';
+import { MapPin } from 'lucide-react';
+import {FaCaretDown} from 'react-icons/fa6';
 
 
 const Navbar = () => {
@@ -26,15 +26,12 @@ const Navbar = () => {
 
         <nav>
           <ul className='flex gap-7 text-xl font-semibold'>
-            <NavLink to="/" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>Home</NavLink>
-            <NavLink to="/products" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>Products</NavLink>
-            <NavLink to="/about" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>About</NavLink>
-            <NavLink to="/contact" className={({isActive}) => isActive ? 'border-b-3 border-red-500' : ''}>Contact</NavLink>
+            <NavLink to="/" className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>Home</NavLink>
+            <NavLink to="/products" className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>Products</NavLink>
+            <NavLink to="/about" className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>About</NavLink>
+            <NavLink to="/contact" className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>Contact</NavLink>
           </ul>
         </nav>
-
-
-
 
       </div> 
     </div>

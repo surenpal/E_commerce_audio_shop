@@ -3,7 +3,7 @@ import { Link , NavLink} from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import {FaCaretDown} from 'react-icons/fa6';
 import {IoCartOutline} from 'react-icons/io5';
-
+import { SignedIn, SignedOut, UserButton, SignInButton, SignUpButton } from '@clerk/clerk-react';
 
 const Navbar = () => {
   const location = false;; 
@@ -39,8 +39,16 @@ const Navbar = () => {
           <Link to= {"/cart"}  className='relative'>
           <IoCartOutline className= 'h-7 w-7'/>
           <span className='bg-red-500 px-2 rounded-full absolute -top-3 -right-3 text-white'>0</span></Link>
+      
+        <div>
+          <SignedOut>
+            <SignInButton className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer" />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
         </nav>
-
       </div> 
     </div>   
   )

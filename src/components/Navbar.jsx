@@ -29,16 +29,16 @@ const Navbar = () => {
         </div>
 
 
-        <nav>
+        <nav className='flex gap-7 items-center'>
           <ul className='flex gap-7 items-center text-xl font-semibold'>
             <NavLink to={"/"} className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>Home</NavLink>
             <NavLink to={"/products"} className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>Products</NavLink>
             <NavLink to={"/about"} className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>About</NavLink>
             <NavLink to={"/contact"} className={({isActive}) => isActive ? 'border-b-4 border-red-500' : ''}>Contact</NavLink>
           </ul>
-          <Link to= {"/cart"} >
+          <Link to= {"/cart"}  className='relative'>
           <IoCartOutline className= 'h-7 w-7'/>
-          <span>0</span></Link>
+          <span className='bg-red-500 px-2 rounded-full absolute -top-3 -right-3 text-white'>0</span></Link>
         </nav>
 
       </div> 

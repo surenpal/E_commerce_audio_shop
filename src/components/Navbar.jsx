@@ -6,9 +6,22 @@ import {IoCartOutline} from 'react-icons/io5';
 import { SignedIn, SignedOut, UserButton, SignInButton, SignUpButton } from '@clerk/clerk-react';
 
 const Navbar = () => {
-  const location = false;; 
+  const location = "New York, NY";
+
+  const getLocation = async () => {
+    navigator.geolocation.getCurrentPosition( pos =>  {
+      const {latitude, longitude} = pos.coords;
+      console.log("latitide:", latitude);
+      console.log("longitude:", longitude);
+    })
+  }
+  
+  useEffect(() => {
+    getLocation();
+  }, [])
+
   return (
-    <div className='bg-white py-3 shadow-2xl'>
+    <div className='bg-white py-3 shadow-2xl -4'>
       <div className='max-w-6xl flex justify-between items-center'>
         <div className='flex gap-7 items-center'>
           <Link to={"/"}>

@@ -1,19 +1,21 @@
+import { useEffect, useState } from 'react';
 import React from 'react'
 import { Link , NavLink} from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import {FaCaretDown} from 'react-icons/fa6';
 import {IoCartOutline} from 'react-icons/io5';
 import { SignedIn, SignedOut, UserButton, SignInButton, SignUpButton } from '@clerk/clerk-react';
-import { useEffect, useState } from 'react';
+
 
 const Navbar = () => {
+
+  const [location, setLocation] = useState("");
 
 
   const getLocation = async () => {
     navigator.geolocation.getCurrentPosition( pos =>  {
       const {latitude, longitude} = pos.coords;
-      console.log("latitide:", latitude);
-      console.log("longitude:", longitude);
+      console.log(latitude, longitude);
     })
   }
   

@@ -11,22 +11,26 @@ import axios from 'axios';
 
 const App = () => {
 
-    const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("");
 
 
   const getLocation = async () => {
     navigator.geolocation.getCurrentPosition(async pos =>  {
       const {latitude, longitude} = pos.coords;
       console.log(latitude, longitude);
-    })
 
       const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
       try {
         const location = await axios.get(url)
-        console.log(location);
+        const exactLocation = location.data.address
+        setLocation(exactLocation);
+        console.log(exactLocation);
       }catch (error) {
         console.log("Error fetching location", error);
       }
+
+    })
+    
   }
    
   useEffect(() => {
@@ -36,7 +40,7 @@ const App = () => {
 
   return (
       <BrowserRouter>
-      <Navbar />
+      <Navbar location={location}/>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/products" element={<Products/>}></Route>

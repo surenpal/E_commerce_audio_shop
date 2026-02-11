@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { use } from 'react'
 import { Link , NavLink} from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import {FaCaretDown} from 'react-icons/fa6';
 import {IoCartOutline} from 'react-icons/io5';
 import { SignedIn, SignedOut, UserButton, SignInButton, SignUpButton } from '@clerk/clerk-react';
 import { useState } from 'react';
+import { CgClose } from 'react-icons/cg';
 
 
 
-const Navbar = () => {
-
-  const [location, setLocation] = useState("");
+const Navbar = ({location}) => {
   
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const toggleDropdown = () => {
+    setOpenDropdown(!openDropdown);
+  }
+
+
   return (
     <div className='bg-white py-3 shadow-2xl -4'>
       <div className='max-w-6xl flex justify-between items-center'>
@@ -26,11 +31,18 @@ const Navbar = () => {
 
            <div className='flex gap-1 cursor-pointer text-gray-700 items-center'>
             <MapPin className='text-red-500'/>
-            <span className="font-semibold">
-              {location ? <div>{location}</div> : "Add Address"}
+            <span className="font-semibold">{location ?  <div className='-space-y-2'>
+                <p>{location.country}</p>
+                <p>{location.city}</p>
+                </div> : "Add Address"}
             </span>
-            <FaCaretDown />
+            <FaCaretDown  onClick={() => setOpenDropdown(!openDropdown)} className='cursor-pointer'/>
            </div>
+
+           {
+            openDropdown ? <div className='absolute top-16 bg-white shadow-lg p-5 rounded-md'> <h1 className='text-lg font-bold'>Update Location <span><CgClose/></span></h1></div> : null
+           }
+
         </div>
 
 

@@ -4,9 +4,10 @@ import { MapPin } from 'lucide-react';
 import {FaCaretDown} from 'react-icons/fa6';
 import {IoCartOutline} from 'react-icons/io5';
 import { SignedIn, SignedOut, UserButton, SignInButton, SignUpButton } from '@clerk/clerk-react';
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
-  const location = "New York, NY";
+
 
   const getLocation = async () => {
     navigator.geolocation.getCurrentPosition( pos =>  {

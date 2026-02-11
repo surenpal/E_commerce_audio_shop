@@ -23,6 +23,7 @@ const App = () => {
       const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
       try {
         const location = await axios.get(url)
+        console.log(location);
       }catch (error) {
         console.log("Error fetching location", error);
       }

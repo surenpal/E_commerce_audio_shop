@@ -9,9 +9,8 @@ import { CgClose } from 'react-icons/cg';
 
 
 
-const Navbar = ({location}) => {
+const Navbar = ({location, getLocation, openDropdown, setOpenDropdown}) => {
   
-  const [openDropdown, setOpenDropdown] = useState(false);
   const toggleDropdown = () => {
     setOpenDropdown(!openDropdown);
   }
@@ -23,10 +22,10 @@ const Navbar = ({location}) => {
         <div className='flex gap-7 items-center'>
           <Link to={"/"}>
           <h1 className='font-bold text-3xl text-pink-600'>
-            <span className='text-blue-500 font-serif'>B</span>
-            a
-            <span  className= "text-red-500 font-serif">s</span>
-            s
+            <span className='text-blue-500 font-serif'>E</span>
+            l
+            <span  className= "text-red-500 font-serif">e</span>
+            x
             </h1></Link>
 
            <div className='flex gap-1 cursor-pointer text-gray-700 items-center'>
@@ -36,11 +35,14 @@ const Navbar = ({location}) => {
                 <p>{location.city}</p>
                 </div> : "Add Address"}
             </span>
-            <FaCaretDown  onClick={() => setOpenDropdown(!openDropdown)} className='cursor-pointer'/>
+            <FaCaretDown  onClick={toggleDropdown}/>
            </div>
 
            {
-            openDropdown ? <div className='absolute top-16 bg-white shadow-lg p-5 rounded-md'> <h1 className='text-lg font-bold'>Update Location <span><CgClose/></span></h1></div> : null
+            openDropdown ? <div className='w-[250px] h-max shadow-2xl z-50 bg-white fixed top-16 left-60 border-2 
+            p-5 border-gray-100 rounded-md'> <h1 className='font-semibold mb-4 text-xl flex justify-between'>Want to Update location <span onClick={toggleDropdown}><CgClose/></span></h1>
+            <button onClick={getLocation} className='bg-red-500 text-white px-3 py-1 rounded-md'>Update Now</button>
+            </div> : null
            }
 
         </div>

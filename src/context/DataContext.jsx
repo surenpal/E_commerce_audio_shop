@@ -1,10 +1,12 @@
 import { createContext } from "react";
 import { useState } from "react";
+import axios from "axios";
+i
 
 
 export const DataContext = createContext(null);
 
-export const DataProvider = ({children}) => {
+export const DataProvider = ({ children }) => {
     const [data, setData] = useState()
 
     //here we can define functions to fetch or manipulate data
@@ -22,7 +24,9 @@ export const DataProvider = ({children}) => {
 
 
 
-    return <DataContext.Provider value= {{data, setData}}>
+    return <DataContext.Provider value={{ data, setData, fetchAllProducts }}>
         {children}
     </DataContext.Provider>
 }
+
+export default DataProvider;

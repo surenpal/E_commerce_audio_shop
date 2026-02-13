@@ -1,7 +1,6 @@
 import { createContext } from "react";
 import { useState } from "react";
 import axios from "axios";
-i
 
 
 export const DataContext = createContext(null);

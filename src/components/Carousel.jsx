@@ -9,7 +9,7 @@ const Carousel = () => {
   }, [])
 
   return (
-    <div>Carousel</div>
+    <div> This is the Carousel</div>
   )
 }
 

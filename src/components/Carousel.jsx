@@ -3,10 +3,7 @@ import { DataContext } from '../context/DataContext'
 
 const Carousel = () => {
 
-  const { fetchAllProducts } = useContext(DataContext)
-  useEffect(() => {
-    fetchAllProducts();
-  }, [])
+  const { } = useContext(DataContext)
 
   return (
     <div> This is the Carousel</div>

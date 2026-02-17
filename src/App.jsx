@@ -48,8 +48,6 @@ const App = () => {
         setOpenDropdown={setOpenDropdown}
       />
 
-      <div className="max-w-7xl mx-auto px-4"></div>
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />

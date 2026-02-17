@@ -11,14 +11,12 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
   const toggleDropdown = () => setOpenDropdown(!openDropdown)
 
   return (
-    <div className="bg-white py-3 shadow-md sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
+    <div className="bg-white py-3 shadow-md">
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
 
-        {/* LEFT */}
         <div className="flex gap-7 items-center relative">
 
-          {/* LOGO */}
-          <Link to="/">
+          <Link to={"/"}>
             <h1 className="font-bold text-3xl text-pink-600">
               <span className="text-blue-500 font-serif">G</span>
               l
@@ -27,7 +25,6 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
             </h1>
           </Link>
 
-          {/* LOCATION */}
           <div className="flex gap-1 cursor-pointer text-gray-700 items-center" onClick={toggleDropdown}>
             <MapPin className="text-red-500" />
 

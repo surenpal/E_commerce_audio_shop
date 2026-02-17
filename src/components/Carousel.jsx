@@ -23,7 +23,7 @@ const Carousel = () => {
   }
 
   return (
-    <div className="w-full bg-black">
+      <div className="w-full bg-black">
       <div className="max-w-6xl mx-auto px-4">
         <Slider {...settings}>
           {data?.slice(0, 7)?.map((item, index) => (

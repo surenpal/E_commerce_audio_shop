@@ -1,4 +1,4 @@
-import React, { use, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { DataContext } from '../context/DataContext'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -28,7 +28,8 @@ const Carousel = () => {
       <Slider {...settings}>
         {
           data?.slice(0,7)?.map((item, index) => {
-            return <div key={index} className='bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] -z-10'>
+      return (
+        <div key={index} className='bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] -z-10'>
           <div className='flex gap-10 justify-center h-[600px] items-center px-4'>
             <div className='space-y-6'>
               <h3 className='text-red-500 font-semibold font-sans text-sm'>Lorem ipsum, dolor sit amet
@@ -39,12 +40,11 @@ const Carousel = () => {
               rounded-md cursor-pointer mt-2'>Shop Now
               </button>
             </div>
+            <img src={item.image} alt={item.title} className='rounded-full w-[550px]
+            hover:scale-105 transition-all shadow-red-400'/>
           </div>
-          <img src={item.image} alt={item.title} className='rounded-full w-[550px]
-          hover:scale-105 transition-all shadow-red-400S'/>
         </div>
-        <div>
-      </div>
+      )
           })
         }
         <div>

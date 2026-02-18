@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import { DataContext } from '../context/DataContext'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -9,10 +9,10 @@ const Carousel = () => {
   const { data, fetchAllProducts } = useContext(DataContext)
 
   useEffect(() => {
-    fetchAllProducts()
-  }, [])
+    if (!data?.length) fetchAllProducts()
+  }, [fetchAllProducts, data])
 
-  const settings = {
+  const settings = useMemo(() => ({
     dots: false,
     infinite: true,
     autoplay: true,
@@ -20,21 +20,23 @@ const Carousel = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-  }
+    pauseOnHover: true,
+  }), [])
+
+  if (!Array.isArray(data))
+    return <div className="text-center py-20">Loading...</div>
 
   return (
-      <div className="w-full bg-black">
+    <div className="w-full bg-black">
       <div className="max-w-6xl mx-auto px-4">
         <Slider {...settings}>
-          {data?.slice(0, 7)?.map((item, index) => (
-            <div key={index} className="bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]">
-
-              <div className="flex flex-col md:flex-row gap-10 justify-between items-center h-auto md:h-[600px] py-10">
+          {data.slice(0,7).map((item) => (
+            <div key={item.id} className="bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]">
+              <div className="flex flex-col md:flex-row gap-10 justify-between items-center md:h-[600px] py-10">
 
                 <div className="space-y-6 max-w-[500px] text-center md:text-left">
                   <h3 className="text-red-500 font-semibold text-sm">
                     This is where you need to visit for the best beauty products.
-                    The best quality and the best price.
                   </h3>
 
                   <h1 className="text-3xl md:text-4xl font-bold uppercase text-white">
@@ -51,19 +53,13 @@ const Carousel = () => {
                 </div>
 
                 <img
-                  src={item.images}
+                  src={Array.isArray(item.images) ? item.images[0] : item.images}
                   alt={item.title}
-                  className="rounded-full w-[250px] md:w-[450px] hover:scale-105 transition-all shadow-red-400"
+                  className="rounded-full w-[250px] md:w-[450px] object-cover hover:scale-105 transition-all shadow-red-400"
                 />
-
               </div>
             </div>
           ))}
-
-          <div className="bg-gray-900 h-[400px] md:h-[600px] flex items-center justify-center text-white text-4xl">
-            <h3>1</h3>
-          </div>
-
         </Slider>
       </div>
     </div>

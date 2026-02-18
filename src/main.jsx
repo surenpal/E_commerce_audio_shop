@@ -4,7 +4,8 @@ import './index.css';
 import App from './App.jsx';
 import { ClerkProvider } from '@clerk/clerk-react';
 
-// ✅ Import your DataProvider
+
+
 import { DataProvider } from './context/DataContext';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -15,10 +16,11 @@ if (!PUBLISHABLE_KEY) {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <DataProvider>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <DataProvider>
         <App />
-      </ClerkProvider>
-    </DataProvider>
+      </DataProvider>
+    </ClerkProvider>
   </StrictMode>
+
 );

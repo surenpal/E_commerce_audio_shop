@@ -1,5 +1,4 @@
 import { useEffect, useState, useCallback } from 'react';
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';

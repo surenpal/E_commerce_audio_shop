@@ -105,9 +105,7 @@ const Carousel = () => {
           </div>
         ))}
       </Slider>
-
-
-      <Category />
+      <Category /> 
     </div>
   )
 }

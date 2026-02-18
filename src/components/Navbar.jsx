@@ -17,7 +17,7 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
         <div className="flex gap-7 items-center relative">
           <Link to="/">
             <h1 className="font-serif text-4xl font-bold text-white tracking-wide drop-shadow-lg">
-              Glow
+              MELA
             </h1>
           </Link>
 

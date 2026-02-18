@@ -1,8 +1,9 @@
-import { useContext, useEffect, useMemo } from "react"
-import { DataContext } from "../context/DataContext"
+import { useEffect, useMemo } from "react"
+import { getData } from "../context/DataContext"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
+import { Category } from "./Category"
 
 const NextArrow = ({ onClick }) => (
   <button
@@ -33,7 +34,8 @@ const PrevArrow = ({ onClick }) => (
 )
 
 const Carousel = () => {
-  const { data, fetchAllProducts } = useContext(DataContext)
+  const { data, fetchAllProducts } = getData()
+  console.log("Carousel data:", data)
 
   useEffect(() => {
     if (!data?.length) fetchAllProducts()
@@ -44,16 +46,17 @@ const Carousel = () => {
       dots: false,
       infinite: true,
       autoplay: true,
-      autoplaySpeed: 3500,
+      autoplaySpeed: 3000,
       speed: 800,
       fade: true,
       slidesToShow: 1,
       slidesToScroll: 1,
-      pauseOnHover: true,
+      pauseOnHover: false,
       arrows: true,
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
       lazyLoad: "ondemand",
+      pauseOnHover: true,
     }),
     []
   )
@@ -64,7 +67,7 @@ const Carousel = () => {
   return (
     <div className="w-full relative">
       <Slider {...settings}>
-        {data.slice(0, 7).map((item) => (
+        {data.slice(7, 15).map((item) => (
           <div key={item.id}>
             <div className="w-full bg-gradient-to-r from-[#E8B4B8] via-[#5A2A55] to-[#D4AF37]">
 
@@ -102,6 +105,9 @@ const Carousel = () => {
           </div>
         ))}
       </Slider>
+
+
+      <Category />
     </div>
   )
 }

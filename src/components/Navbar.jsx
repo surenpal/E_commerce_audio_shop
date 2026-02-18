@@ -11,25 +11,23 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
   const toggleDropdown = () => setOpenDropdown(!openDropdown)
 
   return (
-    <div className="bg-white py-3 shadow-2xl">
+    <div className="bg-gradient-to-r from-[#E8B4B8] via-[#5A2A55] to-[#D4AF37] py-4 shadow-xl">
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
 
-        <div className="flex gap-7 items-center relative"> 
-
-          <Link to={"/"}>
-            <h1 className="font-bold text-3xl text-pink-600">
-              <span className="text-blue-500 font-serif">G</span>
-              l
-              <span className="text-blue-500 font-serif">o</span>
-              w
+        <div className="flex gap-7 items-center relative">
+          <Link to="/">
+            <h1 className="font-serif text-4xl font-bold text-white tracking-wide drop-shadow-lg">
+              Glow
             </h1>
           </Link>
-          
 
-          <div className="flex gap-1 cursor-pointer text-gray-700 items-center" onClick={toggleDropdown}>
-            <MapPin className="text-red-500" />
+          <div
+            className="flex gap-1 cursor-pointer text-white items-center hover:opacity-90 transition"
+            onClick={toggleDropdown}
+          >
+            <MapPin className="text-[#D4AF37]" />
 
-            <div className="font-semibold">
+            <div className="font-medium">
               {location ? (
                 <div className="-space-y-1 leading-tight">
                   <p>{location.country}</p>
@@ -40,7 +38,7 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
               )}
             </div>
 
-            <FaCaretDown />
+            <FaCaretDown className="text-[#D4AF37]" />
           </div>
 
           {openDropdown && (
@@ -54,7 +52,7 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
 
               <button
                 onClick={getLocation}
-                className="bg-red-500 text-white px-3 py-1 rounded-md w-full"
+                className="bg-[#5A2A55] text-white px-3 py-1 rounded-md w-full hover:bg-[#4a2147] transition"
               >
                 Update Now
               </button>
@@ -63,21 +61,62 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
         </div>
 
         <nav className="flex gap-7 items-center">
-          <ul className="hidden md:flex gap-7 items-center text-lg font-semibold">
-            <NavLink to="/" className={({ isActive }) => isActive ? "border-b-4 border-red-500" : ""}>Home</NavLink>
-            <NavLink to="/products" className={({ isActive }) => isActive ? "border-b-4 border-red-500" : ""}>Products</NavLink>
-            <NavLink to="/about" className={({ isActive }) => isActive ? "border-b-4 border-red-500" : ""}>About</NavLink>
-            <NavLink to="/contact" className={({ isActive }) => isActive ? "border-b-4 border-red-500" : ""}>Contact</NavLink>
+          <ul className="hidden md:flex gap-7 items-center text-lg font-semibold text-white">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-4 border-[#D4AF37] pb-1"
+                  : "hover:text-[#D4AF37] transition"
+              }
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-4 border-[#D4AF37] pb-1"
+                  : "hover:text-[#D4AF37] transition"
+              }
+            >
+              Products
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-4 border-[#D4AF37] pb-1"
+                  : "hover:text-[#D4AF37] transition"
+              }
+            >
+              About
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-4 border-[#D4AF37] pb-1"
+                  : "hover:text-[#D4AF37] transition"
+              }
+            >
+              Contact
+            </NavLink>
           </ul>
 
-          <Link to="/cart" className="relative">
+          <Link to="/cart" className="relative text-white hover:text-[#D4AF37] transition">
             <IoCartOutline className="h-7 w-7" />
-            <span className="bg-red-500 px-2 rounded-full absolute -top-3 -right-3 text-white text-sm">0</span>
+            <span className="bg-[#D4AF37] px-2 rounded-full absolute -top-3 -right-3 text-white text-sm">
+              0
+            </span>
           </Link>
 
           <div>
             <SignedOut>
-              <SignInButton className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer" />
+              <SignInButton className="bg-[#5A2A55] text-white px-3 py-1 rounded-md cursor-pointer hover:bg-[#4a2147] transition" />
             </SignedOut>
             <SignedIn>
               <UserButton />

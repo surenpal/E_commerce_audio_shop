@@ -1,4 +1,4 @@
-
+import bg_midbanner from "../assets/bg_midbanner.jpg"
 
 const MidBanner = () => {
   return (
@@ -7,7 +7,7 @@ const MidBanner = () => {
         className="relative max-w-7xl mx-auto pt-48 bg-cover bg-center h-[700px]"
         style={{
           backgroundImage:
-            "url('../assets/mid-banner.jpg')",
+            `url(${bg_midbanner})`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>

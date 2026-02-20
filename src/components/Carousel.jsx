@@ -4,6 +4,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import { Category } from "./Category"
+import bgcarousel from "../assets/bg_carousel.avif"
+
 
 const NextArrow = ({ onClick }) => (
   <button
@@ -69,7 +71,14 @@ const Carousel = () => {
       <Slider {...settings}>
         {data.slice(7, 15).map((item) => (
           <div key={item.id}>
-            <div className="w-full bg-gradient-to-r from-[#E8B4B8] via-[#5A2A55] to-[#D4AF37]">
+            <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${bgcarousel})`,
+                }}
+              ></div>
+              <div className="absolute inset-0 bg-black/40"></div>
+
 
               <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-10 justify-between items-center md:h-[600px] py-10">
 
@@ -102,10 +111,9 @@ const Carousel = () => {
                 />
               </div>
             </div>
-          </div>
         ))}
       </Slider>
-      <Category /> 
+      <Category />
     </div>
   )
 }

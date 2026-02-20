@@ -4,7 +4,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import { Category } from "./Category"
-import bgcarousel from "../assets/bg_carousel.avif"
+import bgcarousel from "../assets/bg_carousel.png"
+
 
 
 const NextArrow = ({ onClick }) => (
@@ -15,7 +16,7 @@ const NextArrow = ({ onClick }) => (
                flex items-center justify-center shadow-lg 
                hover:bg-[#4a2147] transition-all duration-300
                hover:scale-110 hover:shadow-[0_0_15px_#D4AF37]
-               z-10"
+               z-20"
   >
     <span className="text-xl">›</span>
   </button>
@@ -29,19 +30,22 @@ const PrevArrow = ({ onClick }) => (
                flex items-center justify-center shadow-lg 
                hover:bg-[#4a2147] transition-all duration-300
                hover:scale-110 hover:shadow-[0_0_15px_#D4AF37]
-               z-10"
+               z-20"
   >
     <span className="text-xl">‹</span>
   </button>
 )
 
+
+
 const Carousel = () => {
   const { data, fetchAllProducts } = getData()
-  console.log("Carousel data:", data)
 
   useEffect(() => {
     if (!data?.length) fetchAllProducts()
-  }, [data])
+  }, [data, fetchAllProducts])
+
+
 
   const settings = useMemo(
     () => ({
@@ -53,41 +57,50 @@ const Carousel = () => {
       fade: true,
       slidesToShow: 1,
       slidesToScroll: 1,
-      pauseOnHover: false,
+      pauseOnHover: true,
       arrows: true,
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
       lazyLoad: "ondemand",
-      pauseOnHover: true,
     }),
     []
   )
 
+
+
   if (!Array.isArray(data))
     return <div className="text-center py-20 text-lg">Loading...</div>
 
+
+
   return (
     <div className="w-full relative">
+
       <Slider {...settings}>
-        {data.slice(7, 15).map((item) => (
-          <div key={item.id}>
-            <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${bgcarousel})`,
-                }}
-              ></div>
-              <div className="absolute inset-0 bg-black/40"></div>
+        {data.slice(7, 15).map((item) => {
+          
+          const imageSrc =
+            Array.isArray(item.images)
+              ? item.images[0]?.url || item.images[0]
+              : item.images
 
+          return (
+            <div key={item.id} className="relative">
 
-              <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-10 justify-between items-center md:h-[600px] py-10">
+              <div
+                className="absolute inset-0 bg-cover bg-center z-0"
+                style={{ backgroundImage: `url(${bgcarousel})` }}
+              />
+
+              <div className="absolute inset-0 bg-black/40 z-0" />
+
+              <div className="relative z-10 max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-10 justify-between items-center md:h-[600px] py-10">
 
                 <div className="space-y-6 max-w-[500px] text-center md:text-left">
-                  <h3 className="text-[#5A2A55] font-semibold text-sm leading-relaxed">
-                    Glow with confidence.
-                    <br />
-                    Reveal your natural beauty.
-                    <br />
+                  
+                  <h3 className="text-[#D4AF37] font-semibold text-sm leading-relaxed">
+                    Glow with confidence.<br />
+                    Reveal your natural beauty.<br />
                     Shine like you were born to.
                   </h3>
 
@@ -104,15 +117,23 @@ const Carousel = () => {
                   </button>
                 </div>
 
+
+
+          
                 <img
-                  src={Array.isArray(item.images) ? item.images[0] : item.images}
+                  src={imageSrc || "/fallback.png"}
                   alt={item.title}
+                  onError={(e) => {
+                    e.target.src = "/fallback.png"
+                  }}
                   className="flex-shrink-0 rounded-full w-[220px] sm:w-[300px] md:w-[420px] object-cover transition-all duration-500 hover:scale-105 shadow-[20px_0_60px_rgba(212,175,55,0.6),-20px_0_60px_rgba(90,42,85,0.6)]"
                 />
               </div>
             </div>
-        ))}
+          )
+        })}
       </Slider>
+
       <Category />
     </div>
   )

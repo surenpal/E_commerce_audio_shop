@@ -1,4 +1,4 @@
-import bg_midbanner from "../assets/bg_midbanner.jpg"
+import bg_midbanner from "../assets/bg_midbanner.avif"
 
 const MidBanner = () => {
   return (

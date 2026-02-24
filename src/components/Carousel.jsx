@@ -92,7 +92,7 @@ const Carousel = () => {
                 style={{ backgroundImage: `url(${bgcarousel})` }}
               />
 
-              <div className="absolute inset-0 bg-black/40 z-0" />
+              <div className="absolute inset-0 bg-black/10 z-0" />
 
               <div className="relative z-10 max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-10 justify-between items-center md:h-[600px] py-10">
 

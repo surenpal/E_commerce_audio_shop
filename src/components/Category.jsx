@@ -21,10 +21,10 @@ export const Category = () => {
   const secondRow = categoryOnlyData.slice(8)
 
   return (
-    <div className="bg-[url('/src/assets/bg_carousel.png')] py-10">
-      <div className="absolute inset-0 bg-black/10 z-0" />
+    <div className=" relative bg-[url('/src/assets/bg_carousel.png')] py-10">
+      <div className="absolute inset-0 bg-white/10 z-0" />
 
-      <div className="max-w-7xl mx-auto px-4 space-y-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 space-y-8">
 
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
           {firstRow.map((item, index) => (

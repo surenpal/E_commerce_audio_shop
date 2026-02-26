@@ -22,7 +22,7 @@ export const Category = () => {
 
   return (
     <div className=" relative bg-[url('/src/assets/bg_carousel.png')] py-10">
-      <div className="absolute inset-0 bg-white/10 z-0" />
+      <div className="absolute inset-0 bg-black/10 z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 space-y-8">
 
@@ -30,8 +30,8 @@ export const Category = () => {
           {firstRow.map((item, index) => (
             <button
               key={index}
-              className="uppercase text-sm font-semibold text-white 
-                         bg-[#5A2A55] hover:bg-[#4a2147]
+              className="uppercase text-sm font-semibold text-blue-900 
+                         bg-transparent hover:bg-gray-400/50 border border-gray-200
                          px-4 py-2 rounded-md hover:scale-105 transition-all duration-300"
             >
               {item}
@@ -43,8 +43,8 @@ export const Category = () => {
           {secondRow.map((item, index) => (
             <button
               key={index}
-              className="uppercase text-sm font-semibold text-white 
-                         bg-[#5A2A55] hover:bg-[#4a2147]
+              className="uppercase text-sm font-semibold text-blue-900 
+                         bg-transparent hover:bg-gray-400/50 border border-gray-200
                          px-4 py-2 rounded-md hover:scale-105 transition-all duration-300"
             >
               {item}

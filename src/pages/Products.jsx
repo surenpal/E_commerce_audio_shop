@@ -1,18 +1,22 @@
 import React from 'react'
 import { getData } from '../context/DataContext'
+import { useEffect } from 'react'
 
 const Products = () => {
 
-  const { data} = getData()
+  const { data, fetchAllProducts } = getData()
+   useEffect(() =>{
+    fetchAllProducts()
+   })
   return (
     <div>
       <div>
         {
           data.length > 0 ? (
-            <div></div>
+            <div>product 1</div>
             
           ):(
-            <div></div>
+            <div>No products available</div>
           )
         }
       </div>

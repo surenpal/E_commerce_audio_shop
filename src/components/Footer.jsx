@@ -14,10 +14,10 @@ const Footer = () => {
                         </h1>
                     </Link>
                     <p className="mt-3 text-sm">
-                        The one and only place, where you can find the best beauty, electronic, Home Decor products, with the best prices. We are committed to providing you with an exceptional shopping experience and top-notch customer service.
+                        The best place, where you can find the best beauty, electronic, Home Decor products, with the best prices and top-notch customer service.
                     </p>
 
-                    <div className="mt-4 space-y-1 text-sm">
+                    <div className="mt-4 space-y-1 text-sm text-blue-400">
                         <p>Tokyo,Adachi-Ku,1210823,New street</p>
                         <p>Email: support@MELA.com</p>
                         <p>Phone: (030) 4456-6745</p>
@@ -49,7 +49,7 @@ const Footer = () => {
 
                 {/* Newsletter */}
                 <div>
-                    <h3 className="text-lg font-semibold text-white mb-3">Stay in the Loop</h3>
+                    <h3 className="text-lg font-semibold text-white mb-3">Stay Updated</h3>
                     <p className="text-sm mb-4">
                         Subscribe to get special offers, and more.
                     </p>

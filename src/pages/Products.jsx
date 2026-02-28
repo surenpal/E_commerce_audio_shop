@@ -16,13 +16,16 @@ const Products = () => {
             <div>
               <FilterSection/>
               <div>
-                
+
               </div>
             </div>
             
             
           ):(
-            <div>No products available</div>
+            <div className='flex items-center justify-center h-[400px]'>
+              <video muted autoPlay loop></video>
+
+            </div>
           )
         }
       </div>

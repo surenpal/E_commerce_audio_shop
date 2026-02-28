@@ -1,7 +1,6 @@
 import React from 'react'
 import { getData } from '../context/DataContext'
 import { useEffect } from 'react'
-import FilterSection from '../components/FilterSection'
 
 const Products = () => {
 
@@ -16,6 +15,9 @@ const Products = () => {
           data.length > 0 ? (
             <div>
               <FilterSection/>
+              <div>
+                
+              </div>
             </div>
             
             

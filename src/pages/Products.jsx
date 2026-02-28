@@ -21,7 +21,10 @@ const Products = () => {
                 {data[0].description}
               </p>
               <img src="" alt="" />
+
+              <h3 className=''>Shop Now</h3>
             </div>
+            
             
           ):(
             <div>No products available</div>

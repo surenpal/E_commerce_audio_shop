@@ -23,7 +23,9 @@ const Products = () => {
             
           ):(
             <div className='flex items-center justify-center h-[400px]'>
-              <video muted autoPlay loop></video>
+              <video muted autoPlay loop>
+                <source src={Loading} type="video/webm" />
+              </video>
 
             </div>
           )

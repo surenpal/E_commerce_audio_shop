@@ -1,6 +1,7 @@
 import React from 'react'
 import { getData } from '../context/DataContext'
 import { useEffect } from 'react'
+import FilterSection from '../components/FilterSection'
 
 const Products = () => {
 

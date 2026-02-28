@@ -1,9 +1,5 @@
 import React, { useState, useMemo } from "react";
 import { getData } from "../context/DataContext";
-import { useEffect } from "react";
-import Loading from "../assets/loading.webm";
-import FilterSection from "../components/FilterSection";
-import Carousel from "../components/Carousel";
 
 const FilterSection = ({ onFilterChange }) => {
   const { data } = getData();
@@ -15,19 +11,19 @@ const FilterSection = ({ onFilterChange }) => {
   }, [data]);
 
   const [filters, setFilters] = useState({
-    category: "",
-    maxPrice: 500,
     search: "",
+    category: "",
+    maxPrice: 1000,
   });
 
   const updateFilter = (key, value) => {
     const updated = { ...filters, [key]: value };
     setFilters(updated);
-    onFilterChange && onFilterChange(updated);
+    onFilterChange(updated);
   };
 
   return (
-    <div className="w-full bg-white shadow-md rounded-lg p-5 mt-6">
+    <div className="w-full bg-white shadow-md rounded-lg p-5 mb-6">
       <h2 className="text-xl font-semibold text-[#5A2A55] mb-4">
         Filter Products
       </h2>
@@ -61,7 +57,7 @@ const FilterSection = ({ onFilterChange }) => {
         </select>
       </div>
 
-      {/* Price Range */}
+      {/* Price */}
       <div className="mb-4">
         <label className="block text-gray-700 mb-1">
           Max Price: ${filters.maxPrice}
@@ -69,7 +65,7 @@ const FilterSection = ({ onFilterChange }) => {
         <input
           type="range"
           min="0"
-          max="1000"
+          max="2000"
           value={filters.maxPrice}
           onChange={(e) => updateFilter("maxPrice", e.target.value)}
           className="w-full accent-[#5A2A55]"

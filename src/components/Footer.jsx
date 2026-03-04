@@ -18,7 +18,7 @@ const Footer = () => {
                     </p>
 
                     <div className="mt-4 space-y-1 text-sm text-blue-400">
-                        <p>Tokyo,Adachi-Ku,1210823,New street</p>
+                        <p>Tokyo,Adachi-Ku,1210823,Umejima station</p>
                         <p>Email: support@MELA.com</p>
                         <p>Phone: (030) 4456-6745</p>
                     </div>

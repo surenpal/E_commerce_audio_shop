@@ -9,10 +9,6 @@ import Cart from './pages/Cart';
 import axios from 'axios';
 import Footer from './components/Footer';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3661e76f60b676bbec3860b55e1fa2bc8193fb8b
 const App = () => {
   const [location, setLocation] = useState("");
   const [openDropdown, setOpenDropdown] = useState(false);

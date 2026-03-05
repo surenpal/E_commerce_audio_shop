@@ -12,11 +12,7 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.60.0",
     "@tailwindcss/vite": "^4.1.18",
-<<<<<<< HEAD
-    "axios": "^1.13.6",
-=======
     "axios": "^1.13.5",
->>>>>>> 3661e76f60b676bbec3860b55e1fa2bc8193fb8b
     "lucide-react": "^0.563.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -35,6 +31,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "nodemon": "^3.1.14",
     "vite": "^7.2.4"
   }
 }

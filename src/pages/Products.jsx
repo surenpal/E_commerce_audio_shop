@@ -1,6 +1,8 @@
+// Product.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { getData } from "../context/DataContext";
 import FilterSection from "../components/FilterSection";
+import ProductCard from "../components/ProductCard"; // import the new ProductCard component
 
 const Product = () => {
   const { data, fetchAllProducts } = getData();
@@ -37,11 +39,12 @@ const Product = () => {
 
       <div className="w-full bg-[#5A2A55] text-white rounded-lg p-4 mb-10 flex justify-between items-center">
         <div className="text-lg font-semibold">Recommended for You</div>
-        <div className="text-sm px-2 py-3 bg-[#D4AF37] text-black rounded-md"> Big Sale • Up to 40% Off</div>
+        <div className="text-sm px-2 py-3 bg-[#D4AF37] text-black rounded-md">
+          Big Sale • Up to 40% Off
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 items-stretch">
-
         <div className="md:col-span-2 h-full flex items-center justify-center bg-white shadow-md rounded-lg p-4">
           <div className="w-full h-full">
             <FilterSection onFilterChange={setFilters} />
@@ -57,7 +60,6 @@ const Product = () => {
             className="rounded-lg w-full h-full object-cover"
           />
         </div>
-
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
@@ -67,27 +69,17 @@ const Product = () => {
             : item.images;
 
           return (
-            <div
+            <ProductCard
               key={item.id}
-              className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition"
-            >
-              <img
-                src={imageSrc || "/fallback.png"}
-                alt={item.title}
-                className="w-full h-40 object-cover rounded-md mb-3"
-                onError={(e) => (e.target.src = "/fallback.png")}
-              />
-
-              <h3 className="font-semibold text-gray-800 line-clamp-1">
-                {item.title}
-              </h3>
-
-              <p className="text-[#5A2A55] font-bold">${item.price}</p>
-            </div>
+              name={item.title}
+              price={item.price}
+              image={imageSrc || "/fallback.png"}
+              description={item.description || ""}
+              onAddToCart={() => console.log(`Add ${item.title} to cart`)}
+            />
           );
         })}
       </div>
-
     </div>
   );
 };

@@ -1,7 +1,10 @@
 import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3661e76f60b676bbec3860b55e1fa2bc8193fb8b
 export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {

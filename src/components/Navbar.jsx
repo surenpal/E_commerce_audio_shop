@@ -66,7 +66,7 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
         </div>
 
         <nav className="flex gap-7 items-center">
-          <div lassName="md:hidden text-white text-3xl cursor-pointer" onClick={toggleMenu}>
+          <div className="md:hidden text-white text-3xl cursor-pointer" onClick={toggleMenu}>
             {openMenu ? <CgClose /> : <HiOutlineMenu />}
 
             {openMenu && (

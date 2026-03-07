@@ -5,9 +5,11 @@ import { FaCaretDown } from 'react-icons/fa6'
 import { IoCartOutline } from 'react-icons/io5'
 import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/clerk-react'
 import { CgClose } from 'react-icons/cg'
+import { HiOutlineMenu } from 'react-icons/hi'
 
 const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
 
+  const [openMenu, setOpenMenu] = useState(false)
   const toggleDropdown = () => setOpenDropdown(!openDropdown)
 
   return (

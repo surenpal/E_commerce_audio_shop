@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { MapPin } from 'lucide-react'
 import { FaCaretDown } from 'react-icons/fa6'
@@ -10,7 +11,9 @@ import { HiOutlineMenu } from 'react-icons/hi'
 const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
 
   const [openMenu, setOpenMenu] = useState(false)
+
   const toggleDropdown = () => setOpenDropdown(!openDropdown)
+  const toggleMenu = () => setOpenMenu(!openMenu)
 
   return (
     <div className="bg-gradient-to-r from-[#E8B4B8] via-[#5A2A55] to-[#D4AF37] py-4 shadow-xl">
@@ -63,6 +66,32 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
         </div>
 
         <nav className="flex gap-7 items-center">
+          <div lassName="md:hidden text-white text-3xl cursor-pointer" onClick={toggleMenu}>
+            {openMenu ? <CgClose /> : <HiOutlineMenu />}
+
+            {openMenu && (
+              <div className="md:hidden bg-[#5A2A55] text-white mt-4 rounded-lg shadow-lg">
+                <ul className="flex flex-col text-center font-semibold">
+                  <NavLink to="/" onClick={() => setOpenMenu(false)} className="py-3 border-b border-white/20">
+                    Home
+                  </NavLink>
+
+                  <NavLink to="/products" onClick={() => setOpenMenu(false)} className="py-3 border-b border-white/20">
+                    Products
+                  </NavLink>
+
+                  <NavLink to="/about" onClick={() => setOpenMenu(false)} className="py-3 border-b border-white/20">
+                    About
+                  </NavLink>
+
+                  <NavLink to="/contact" onClick={() => setOpenMenu(false)} className="py-3">
+                    Contact
+                  </NavLink>
+                </ul>
+              </div>
+            )}
+          </div>
+
           <ul className="hidden md:flex gap-7 items-center text-lg font-semibold text-white">
             <NavLink
               to="/"

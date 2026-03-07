@@ -70,26 +70,46 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
             {openMenu ? <CgClose /> : <HiOutlineMenu />}
 
             {openMenu && (
-              <div className="md:hidden bg-[#5A2A55] text-white mt-4 rounded-lg shadow-lg">
-                <ul className="flex flex-col text-center font-semibold">
-                  <NavLink to="/" onClick={() => setOpenMenu(false)} className="py-3 border-b border-white/20">
-                    Home
-                  </NavLink>
+  <div className="md:hidden bg-[#2f3b4c] p-4 mt-4 rounded-lg shadow-lg">
+    <h2 className="text-center text-white text-lg font-semibold mb-4">Menu</h2>
 
-                  <NavLink to="/products" onClick={() => setOpenMenu(false)} className="py-3 border-b border-white/20">
-                    Products
-                  </NavLink>
+    <ul className="flex flex-col gap-3 text-center font-semibold">
 
-                  <NavLink to="/about" onClick={() => setOpenMenu(false)} className="py-3 border-b border-white/20">
-                    About
-                  </NavLink>
+      <NavLink
+        to="/"
+        onClick={() => setOpenMenu(false)}
+        className="bg-red-400 py-4 rounded-xl text-white hover:opacity-90"
+      >
+        Home
+      </NavLink>
 
-                  <NavLink to="/contact" onClick={() => setOpenMenu(false)} className="py-3">
-                    Contact
-                  </NavLink>
-                </ul>
-              </div>
-            )}
+      <NavLink
+        to="/products"
+        onClick={() => setOpenMenu(false)}
+        className="bg-red-500 py-4 rounded-xl text-white hover:opacity-90"
+      >
+        Products
+      </NavLink>
+
+      <NavLink
+        to="/about"
+        onClick={() => setOpenMenu(false)}
+        className="bg-purple-700 py-4 rounded-xl text-white hover:opacity-90"
+      >
+        About
+      </NavLink>
+
+      <NavLink
+        to="/contact"
+        onClick={() => setOpenMenu(false)}
+        className="bg-purple-500 py-4 rounded-xl text-white hover:opacity-90"
+      >
+        Contact
+      </NavLink>
+
+    </ul>
+  </div>
+)}
           </div>
 
           <ul className="hidden md:flex gap-7 items-center text-lg font-semibold text-white">

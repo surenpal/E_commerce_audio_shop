@@ -98,17 +98,24 @@ const Carousel = () => {
 
                 <div className="space-y-6 max-w-[500px] text-center md:text-left">
                   
-                  <h3 className="text-blue-800 font-semibold text-sm leading-relaxed">
-                    Glow with confidence.<br />
-                    Reveal your natural beauty.<br />
-                    Shine like you were born to.
+                  <h3 className="text-black font-semibold text-sm leading-relaxed">
+                    Welcome to MELA, your one-stop destination for a wide variety of
+                    quality products designed to make everyday life easier. We offer 
+                    items across categories such as beauty, skin care, fragrances, 
+                    home décor, furniture, groceries, and kitchen accessories. 
+                    Our collection also includes fashion products like men’s 
+                    shirts, shoes, and watches to keep your style updated. 
+                    For tech lovers, we provide smartphones, laptops, mobile 
+                    accessories, and motorcycle gear. At MELA, our goal is to 
+                    deliver convenience, affordability, and a seamless online 
+                    shopping experience for every customer.
                   </h3>
 
-                  <h1 className="text-3xl md:text-4xl font-bold uppercase text-gray-600 drop-shadow-lg">
+                  <h1 className="text-3xl md:text-4xl font-bold uppercase text-white drop-shadow-lg">
                     {item.title}
                   </h1>
 
-                  <p className="text-gray-800 line-clamp-3 drop-shadow-md">
+                  <p className="text-white line-clamp-3 drop-shadow-md">
                     {item.description}
                   </p>
 

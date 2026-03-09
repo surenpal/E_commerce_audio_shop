@@ -7,11 +7,13 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/clerk-reac
 import { CgClose } from 'react-icons/cg'
 import { HiOutlineMenu } from 'react-icons/hi'
 
-const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
+const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown, cartCount }) => {
   const [openMenu, setOpenMenu] = useState(false)
 
   const toggleDropdown = () => setOpenDropdown(!openDropdown)
   const toggleMenu = () => setOpenMenu(!openMenu)
+
+  const [cart, setCart] = useState([]);
 
   return (
     <div className="bg-gradient-to-r from-pink-400 via-pink-300 to-pink-600 py-3 shadow-lg backdrop-blur-sm">

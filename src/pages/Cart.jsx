@@ -1,40 +1,85 @@
-
+import React from "react";
 
 const Cart = ({ cart }) => {
+
+  const totalItems = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
 
-      <h2 className="text-2xl font-bold mb-6">Your Cart</h2>
+      <h2 className="text-2xl font-bold mb-6">
+        Your Cart ({totalItems} items)
+      </h2>
 
       {cart.length === 0 ? (
         <p className="text-gray-500">Your cart is empty</p>
       ) : (
-        cart.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-center gap-6 border-b py-4"
-          >
+        <>
+          {/* Cart Items */}
+          {cart.map((item) => {
 
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-24 h-24 object-contain"
-            />
+            const imageSrc = Array.isArray(item.images)
+              ? item.images[0]?.url || item.images[0]
+              : item.image || "/fallback.png";
 
-            <div className="flex-1">
+            return (
+              <div
+                key={item.id}
+                className="flex items-center gap-6 border-b py-4"
+              >
 
-              <h3 className="font-semibold">{item.title}</h3>
+                <img
+                  src={imageSrc}
+                  alt={item.title}
+                  className="w-24 h-24 object-contain"
+                  onError={(e) => (e.target.src = "/fallback.png")}
+                />
 
-              <p className="text-gray-600">${item.price}</p>
+                <div className="flex-1">
 
-              <p className="text-sm text-gray-500">
-                Qty: {item.quantity}
-              </p>
+                  <h3 className="font-semibold">
+                    {item.title}
+                  </h3>
 
-            </div>
+                  <p className="text-gray-600">
+                    ${Number(item.price).toFixed(2)}
+                  </p>
+
+                  <p className="text-sm text-gray-500">
+                    Qty: {item.quantity}
+                  </p>
+
+                </div>
+
+              </div>
+            );
+          })}
+
+          {/* Cart Summary */}
+          <div className="mt-8 border-t pt-6 text-right">
+
+            <p className="text-lg font-semibold">
+              Total Items: {totalItems}
+            </p>
+
+            <p className="text-xl font-bold text-pink-500 mt-2">
+              Total Price: ${totalPrice.toFixed(2)}
+            </p>
+
+            <button className="mt-4 bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600 transition">
+              Checkout
+            </button>
 
           </div>
-        ))
+        </>
       )}
 
     </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { getData } from "../context/DataContext";
 import FilterSection from "../components/FilterSection";
 import ProductCard from "../components/ProductCard";
+import { useRef } from "react";
 
 
 
@@ -12,10 +13,13 @@ const Product = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 16;
 
+  const productTopRef = useRef(null);
+
   const [filters, setFilters] = useState({
     search: "",
     category: "",
     maxPrice: 1000,
+
   });
 
   useEffect(() => {
@@ -27,11 +31,8 @@ const Product = () => {
   }, [filters]);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [currentPage]);
+  productTopRef.current?.scrollIntoView({ behavior: "smooth" });
+}, [currentPage]);
 
 
   const filteredProducts = useMemo(() => {
@@ -93,7 +94,7 @@ const Product = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+      <div ref={productTopRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {currentProducts.map((item) => {
           const imageSrc = Array.isArray(item.images)
             ? item.images[0]?.url || item.images[0]

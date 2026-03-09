@@ -44,6 +44,8 @@ const App = () => {
         );
       }
 
+
+
       return [
         ...prevCart,
         { ...product, quantity: product.quantity || 1 }
@@ -117,6 +119,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/order-success" element={<OrderSuccess />} />
+
 
       </Routes>
 

@@ -6,6 +6,10 @@ import ProductCard from "../components/ProductCard"; // import the new ProductCa
 
 const Product = () => {
   const { data, fetchAllProducts } = getData();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 16;
+
   const [filters, setFilters] = useState({
     search: "",
     category: "",

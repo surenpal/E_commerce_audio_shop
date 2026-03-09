@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const ContactSection = () => {
+
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e) => {
+  e.preventDefault();
+
+  setSent(true);
+
+  setTimeout(() => {
+    setSent(false);
+    e.target.reset();
+  }, 2000);
+};
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 flex items-center justify-center px-6 py-16">
 
@@ -9,9 +23,7 @@ const ContactSection = () => {
 
         {/* Left Side */}
         <div className="text-white">
-          <h2 className="text-3xl font-bold mb-6">
-            Contact Info
-          </h2>
+          <h2 className="text-3xl font-bold mb-6">Contact Info</h2>
 
           <p className="text-gray-300 mb-8">
             Have a question or need support? We're here to help with your electronics journey.
@@ -22,7 +34,7 @@ const ContactSection = () => {
             <div className="flex items-center gap-3">
               <MapPin className="text-pink-400" size={20} />
               <span className="text-gray-200">
-                Tokyo,Adachi-Ku,1210823,Umejima station
+                Tokyo, Adachi-Ku, 1210823, Umejima station
               </span>
             </div>
 
@@ -49,12 +61,10 @@ const ContactSection = () => {
             Get in Touch with <span className="text-pink-400">MELA</span>
           </h2>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
 
             <div>
-              <label className="block text-gray-200 mb-2">
-                Your Name
-              </label>
+              <label className="block text-gray-200 mb-2">Your Name</label>
               <input
                 type="text"
                 placeholder="John Doe"
@@ -63,9 +73,7 @@ const ContactSection = () => {
             </div>
 
             <div>
-              <label className="block text-gray-200 mb-2">
-                Email Address
-              </label>
+              <label className="block text-gray-200 mb-2">Email Address</label>
               <input
                 type="email"
                 placeholder="john@example.com"
@@ -74,9 +82,7 @@ const ContactSection = () => {
             </div>
 
             <div>
-              <label className="block text-gray-200 mb-2">
-                Your Message
-              </label>
+              <label className="block text-gray-200 mb-2">Your Message</label>
               <textarea
                 rows="4"
                 placeholder="Type your message..."
@@ -85,9 +91,10 @@ const ContactSection = () => {
             </div>
 
             <button
+              type="submit"
               className="w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90 transition"
             >
-              Send Message....
+              {sent ? "Thank you! We will reply promptly." : "Send Message"}
             </button>
 
           </form>

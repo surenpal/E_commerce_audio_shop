@@ -11,13 +11,22 @@ import Footer from "./components/Footer";
 import ProductDetails from "./pages/ProductDetails";
 
 const App = () => {
+
   const [location, setLocation] = useState("");
   const [openDropdown, setOpenDropdown] = useState(false);
 
-  const [cart, setCart] = useState([])
-  
+  const [cart, setCart] = useState([]);
+
+  // total number of items in cart
+  const cartCount = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  // add product to cart
   const addToCart = (product) => {
     setCart((prevCart) => {
+
       const existingItem = prevCart.find(
         (item) => item.id === product.id
       );
@@ -25,18 +34,26 @@ const App = () => {
       if (existingItem) {
         return prevCart.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: (item.quantity || 1) + 1 }
+            ? {
+                ...item,
+                quantity: item.quantity + (product.quantity || 1),
+              }
             : item
         );
       }
 
-      return [...prevCart, { ...product, quantity: 1 }];
+      return [
+        ...prevCart,
+        { ...product, quantity: product.quantity || 1 }
+      ];
     });
   };
 
+  // get user location
   const getLocation = useCallback(() => {
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
+
         const { latitude, longitude } = pos.coords;
 
         const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
@@ -49,6 +66,7 @@ const App = () => {
         } catch (error) {
           console.log("Error fetching location", error);
         }
+
       },
       (err) => {
         console.log("Geolocation error:", err);
@@ -61,29 +79,35 @@ const App = () => {
   }, [getLocation]);
 
   return (
+
     <BrowserRouter>
+
       <Navbar
         location={location}
         getLocation={getLocation}
         openDropdown={openDropdown}
         setOpenDropdown={setOpenDropdown}
+        cartCount={cartCount}
       />
 
       <Routes>
 
         <Route path="/" element={<Home />} />
 
-  
-        <Route path="/products" element={<Products addToCart={addToCart} />} />
-
+        <Route
+          path="/products"
+          element={<Products addToCart={addToCart} />}
+        />
 
         <Route
           path="/product/:id"
           element={<ProductDetails addToCart={addToCart} />}
         />
 
-  
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} />}
+        />
 
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -91,6 +115,7 @@ const App = () => {
       </Routes>
 
       <Footer />
+
     </BrowserRouter>
   );
 };

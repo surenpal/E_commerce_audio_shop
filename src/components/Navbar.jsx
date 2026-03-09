@@ -1,26 +1,32 @@
-import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { MapPin } from 'lucide-react'
-import { FaCaretDown } from 'react-icons/fa6'
-import { IoCartOutline } from 'react-icons/io5'
-import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/clerk-react'
-import { CgClose } from 'react-icons/cg'
-import { HiOutlineMenu } from 'react-icons/hi'
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { MapPin } from "lucide-react";
+import { FaCaretDown } from "react-icons/fa6";
+import { IoCartOutline } from "react-icons/io5";
+import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/clerk-react";
+import { CgClose } from "react-icons/cg";
+import { HiOutlineMenu } from "react-icons/hi";
 
-const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown, cartCount }) => {
-  const [openMenu, setOpenMenu] = useState(false)
+const Navbar = ({
+  location,
+  getLocation,
+  openDropdown,
+  setOpenDropdown,
+  cartCount
+}) => {
 
-  const toggleDropdown = () => setOpenDropdown(!openDropdown)
-  const toggleMenu = () => setOpenMenu(!openMenu)
+  const [openMenu, setOpenMenu] = useState(false);
 
-  const [cart, setCart] = useState([]);
+  const toggleDropdown = () => setOpenDropdown(!openDropdown);
+  const toggleMenu = () => setOpenMenu(!openMenu);
 
   return (
     <div className="bg-gradient-to-r from-pink-400 via-pink-300 to-pink-600 py-3 shadow-lg backdrop-blur-sm">
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
 
-        {/* Logo & Location */}
+        {/* Logo + Location */}
         <div className="flex gap-6 items-center relative">
+
           <Link to="/">
             <h1 className="font-serif text-3xl md:text-4xl font-extrabold text-white tracking-wide drop-shadow-sm">
               MELA
@@ -50,6 +56,7 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown, cartCoun
           {/* Dropdown */}
           {openDropdown && (
             <div className="absolute top-12 left-0 w-[250px] bg-white/90 shadow-md rounded-lg p-4 z-50 backdrop-blur-sm">
+
               <h1 className="font-semibold mb-3 text-md flex justify-between text-gray-700">
                 Update Location
                 <span onClick={toggleDropdown} className="cursor-pointer">
@@ -63,8 +70,10 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown, cartCoun
               >
                 Update Now
               </button>
+
             </div>
           )}
+
         </div>
 
         {/* Navigation */}
@@ -76,7 +85,11 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown, cartCoun
 
             {openMenu && (
               <div className="md:hidden bg-white/90 p-4 mt-3 rounded-lg shadow-md backdrop-blur-sm">
-                <h2 className="text-center text-gray-800 text-md font-semibold mb-3">Menu</h2>
+
+                <h2 className="text-center text-gray-800 text-md font-semibold mb-3">
+                  Menu
+                </h2>
+
                 <ul className="flex flex-col gap-2 text-center font-medium">
 
                   <NavLink
@@ -134,11 +147,19 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown, cartCoun
           </ul>
 
           {/* Cart */}
-          <Link to="/cart" className="relative text-white hover:text-pink-300 transition">
+          <Link
+            to="/cart"
+            className="relative text-white hover:text-pink-300 transition"
+          >
+
             <IoCartOutline className="h-6 w-6 md:h-7 md:w-7" />
-            <span className="bg-pink-400 px-2 rounded-full absolute -top-3 -right-3 text-white text-xs md:text-sm">
-              0
-            </span>
+
+            {cartCount > 0 && (
+              <span className="bg-pink-400 px-2 rounded-full absolute -top-3 -right-3 text-white text-xs md:text-sm animate-bounce">
+                {cartCount}
+              </span>
+            )}
+
           </Link>
 
           {/* User */}
@@ -146,15 +167,17 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown, cartCoun
             <SignedOut>
               <SignInButton className="bg-pink-400 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-pink-500 transition text-sm md:text-base" />
             </SignedOut>
+
             <SignedIn>
               <UserButton />
             </SignedIn>
           </div>
+
         </nav>
 
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

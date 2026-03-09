@@ -5,8 +5,6 @@ import FilterSection from "../components/FilterSection";
 import ProductCard from "../components/ProductCard";
 import { useRef } from "react";
 
-
-
 const Product = () => {
   const { data, fetchAllProducts } = getData();
 
@@ -103,6 +101,7 @@ const Product = () => {
           return (
             <ProductCard
               key={item.id}
+              id={item.id}
               name={item.title}
               price={item.price}
               image={imageSrc || "/fallback.png"}

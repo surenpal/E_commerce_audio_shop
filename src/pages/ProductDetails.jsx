@@ -1,82 +1,92 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { getData } from "../context/DataContext"; 
 
-function ProductDetails({ products, addToCart }) {
+function ProductDetails({ addToCart }) {
+
+  const { data } = getData(); 
 
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const product = products.find((p) => p.id === Number(id));
+  const product = data?.find((p) => p.id === Number(id)); 
 
   const [quantity, setQuantity] = useState(1);
 
   if (!product) {
-    return <h2>Product not found</h2>;
+    return <h2 className="text-center mt-20">Product not found</h2>;
   }
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
-    navigate(-1); // return to previous page
+    addToCart(product);
+    navigate(-1);
   };
 
   return (
-    <div className="product-details-page">
+    <div className="max-w-6xl mx-auto px-6 py-12">
 
-      {/* BACK BUTTON */}
-      <button onClick={() => navigate(-1)}>
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-6 text-pink-500 hover:underline"
+      >
         ← Back to Products
       </button>
 
-      <div className="product-details-container">
+      <div className="grid md:grid-cols-2 gap-10 items-center">
 
-        {/* LEFT SIDE IMAGE */}
-        <div className="product-image">
-          <img src={product.image} alt={product.title} />
+        <div>
+          <img
+            src={product.images?.[0]?.url || product.images?.[0] || "/fallback.png"}
+            alt={product.title}
+            className="w-full h-[400px] object-contain"
+          />
         </div>
 
-        {/* RIGHT SIDE INFO */}
-        <div className="product-info">
+        <div>
 
-          <h2>{product.title}</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            {product.title}
+          </h2>
 
-          <p className="product-description">
+          <p className="text-gray-600 mb-6">
             {product.description}
           </p>
 
-          <h3 className="product-price">
+          <h3 className="text-2xl font-bold text-pink-500 mb-6">
             ${product.price}
           </h3>
 
-          {/* QUANTITY */}
-          <div className="quantity-selector">
+          <div className="flex items-center gap-4 mb-6">
 
             <button
               onClick={() => setQuantity(quantity - 1)}
               disabled={quantity <= 1}
+              className="px-3 py-1 bg-gray-200 rounded"
             >
               -
             </button>
 
-            <span>{quantity}</span>
+            <span className="text-lg">{quantity}</span>
 
             <button
               onClick={() => setQuantity(quantity + 1)}
+              className="px-3 py-1 bg-gray-200 rounded"
             >
               +
             </button>
 
           </div>
 
-          {/* ADD TO CART */}
           <button
-            className="add-to-cart-btn"
             onClick={handleAddToCart}
+            className="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition"
           >
             Add to Cart
           </button>
 
         </div>
       </div>
+
     </div>
   );
 }

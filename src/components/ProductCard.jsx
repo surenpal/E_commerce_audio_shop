@@ -1,5 +1,4 @@
-// ProductCard.jsx
-import React from "react";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 import PropTypes from "prop-types";
 
 const ProductCard = ({ name, price, image, description, onAddToCart }) => {
@@ -18,8 +17,10 @@ const ProductCard = ({ name, price, image, description, onAddToCart }) => {
 
       <button
         onClick={onAddToCart}
-        className="mt-auto bg-pink-400 text-white py-2 px-4 rounded hover:bg-pink-500 transition"
+        className="flex  items-center gap-2 mt-auto bg-pink-400 text-white py-2 px-4 rounded hover:bg-pink-500 transition"
       >
+        <HiOutlineShoppingCart className="text-xl" />
+        
         Add to Cart
       </button>
     </div>

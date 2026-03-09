@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 const ContactSection = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#1c1445] via-[#2a1f63] to-[#1c1445] flex items-center justify-center px-6 py-16">
+    <div className="min-h-screen bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 flex items-center justify-center px-6 py-16">
 
       <div className="max-w-6xl w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-10 grid md:grid-cols-2 gap-10">
 

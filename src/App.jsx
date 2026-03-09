@@ -9,6 +9,8 @@ import Cart from "./pages/Cart";
 import axios from "axios";
 import Footer from "./components/Footer";
 import ProductDetails from "./pages/ProductDetails";
+import Checkout from "./components/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
 
 const App = () => {
 
@@ -35,9 +37,9 @@ const App = () => {
         return prevCart.map((item) =>
           item.id === product.id
             ? {
-                ...item,
-                quantity: item.quantity + (product.quantity || 1),
-              }
+              ...item,
+              quantity: item.quantity + (product.quantity || 1),
+            }
             : item
         );
       }
@@ -106,11 +108,15 @@ const App = () => {
 
         <Route
           path="/cart"
-          element={<Cart cart={cart} />}
-        />
+          element={<Cart cart={cart} />} />
 
+        <Route
+          path="/checkout"
+          element={<Checkout cart={cart} setCart={setCart} />}
+        />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/order-success" element={<OrderSuccess />} />
 
       </Routes>
 

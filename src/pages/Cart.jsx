@@ -1,6 +1,7 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ cart }) => {
+  const navigate = useNavigate();
 
   const totalItems = cart.reduce(
     (total, item) => total + item.quantity,
@@ -74,10 +75,12 @@ const Cart = ({ cart }) => {
               Total Price: ${totalPrice.toFixed(2)}
             </p>
 
-            <button className="mt-4 bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600 transition">
-              Checkout
+            <button
+              onClick={() => navigate("/checkout")}
+              className="mt-6 w-full bg-pink-500 text-white py-3 rounded-lg font-semibold hover:bg-pink-600 transition"
+            >
+              Proceed to Checkout
             </button>
-
           </div>
         </>
       )}

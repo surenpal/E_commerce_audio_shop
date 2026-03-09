@@ -26,6 +26,13 @@ const Product = () => {
     setCurrentPage(1);
   }, [filters]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentPage]);
+
 
   const filteredProducts = useMemo(() => {
     if (!Array.isArray(data)) return [];

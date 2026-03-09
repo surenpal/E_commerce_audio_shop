@@ -18,7 +18,7 @@ const ProductCard = ({ name, price, image, description, onAddToCart }) => {
 
       <button
         onClick={onAddToCart}
-        className="mt-auto bg-[#5A2A55] text-white py-2 px-4 rounded hover:bg-[#7b3a7b] transition"
+        className="mt-auto bg-pink-400 text-white py-2 px-4 rounded hover:bg-pink-500 transition"
       >
         Add to Cart
       </button>

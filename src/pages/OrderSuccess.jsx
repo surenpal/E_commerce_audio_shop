@@ -6,9 +6,9 @@ const OrderSuccess = () => {
   const orderId = location.state?.orderId;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-900 text-white">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white text-white">
 
-      <div className="bg-blue-800 p-10 rounded-2xl shadow-lg text-center">
+      <div className="bg-white p-10 rounded-2xl shadow-lg text-center">
 
         <h1 className="text-3xl font-bold text-green-400 mb-4">
           Order Placed Successfully ✓

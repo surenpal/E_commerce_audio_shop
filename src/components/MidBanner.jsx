@@ -19,7 +19,7 @@ const MidBanner = () => {
             Unleash your inner fashionista with our exclusive collection.
           </p>
           <Link to="/products">
-          <button className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-md transition">
+          <button className="bg-pink-400 hover:bg-pink-500 text-white text-lg font-semibold px-6 py-3 rounded-md transition">
             Shop Now
           </button>
           </Link>

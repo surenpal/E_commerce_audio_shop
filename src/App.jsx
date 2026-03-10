@@ -17,7 +17,16 @@ const App = () => {
   const [location, setLocation] = useState("");
   const [openDropdown, setOpenDropdown] = useState(false);
 
-  const [cart, setCart] = useState([]);
+
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
 
   // total number of items in cart
   const cartCount = cart.reduce(

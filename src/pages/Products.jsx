@@ -1,5 +1,5 @@
 // Product.jsx
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { getData } from "../context/DataContext";
 import FilterSection from "../components/FilterSection";
 import ProductCard from "../components/ProductCard";
@@ -11,6 +11,7 @@ const Product = ({ addToCart }) => {
   const productsPerPage = 16;
 
   const productTopRef = useRef(null);
+  const hasMounted = useRef(false);
 
   const [filters, setFilters] = useState({
     search: "",
@@ -23,15 +24,20 @@ const Product = ({ addToCart }) => {
   }, [data, fetchAllProducts]);
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [filters]);
-
-  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
     productTopRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [currentPage]);
 
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    setCurrentPage(1);
+  };
+
   const filteredProducts = useMemo(() => {
-    if (!Array.isArray(data)) return [];
+    if (!data.length) return [];
 
     return data
       .filter((item) =>
@@ -42,7 +48,7 @@ const Product = ({ addToCart }) => {
       .filter((item) =>
         filters.category ? item.category === filters.category : true
       )
-      .filter((item) => item.price <= filters.maxPrice);
+      .filter((item) => item.price <= Number(filters.maxPrice));
   }, [data, filters]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -55,7 +61,7 @@ const Product = ({ addToCart }) => {
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-  if (!Array.isArray(data)) {
+  if (!data.length) {
     return <div className="text-center py-20 text-lg">Loading...</div>;
   }
 
@@ -79,44 +85,50 @@ const Product = ({ addToCart }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
 
         <div className="bg-white shadow-md rounded-lg p-4">
-          <FilterSection onFilterChange={setFilters} />
+          <FilterSection onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="md:col-span-2 bg-white shadow-md rounded-lg p-2 flex items-center justify-center">
+        <div className="md:col-span-2 bg-white shadow-md rounded-lg overflow-hidden h-52 md:h-full">
           <video
             src="/shopping.mp4"
             autoPlay
             loop
             muted
-            className="rounded-lg w-full h-full object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
 
       </div>
 
       {/* Product Grid */}
-      <div
-        ref={productTopRef}
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
-      >
-        {currentProducts.map((item) => {
+      <div ref={productTopRef}>
+        {currentProducts.length === 0 ? (
+          <div className="text-center py-20 text-gray-400">
+            <p className="text-5xl mb-4">🔍</p>
+            <p className="text-lg font-semibold">No products match your filters.</p>
+            <p className="text-sm mt-1">Try adjusting the search, category, or price range.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            {currentProducts.map((item) => {
+              const imageSrc = Array.isArray(item.images)
+                ? item.images[0]?.url || item.images[0]
+                : item.images;
 
-          const imageSrc = Array.isArray(item.images)
-            ? item.images[0]?.url || item.images[0]
-            : item.images;
-
-          return (
-            <ProductCard
-              key={item.id}
-              id={item.id}
-              name={item.title}
-              price={item.price}
-              image={imageSrc || "/fallback.png"}
-              description={item.description || ""}
-              onAddToCart={() => addToCart(item)}
-            />
-          );
-        })}
+              return (
+                <ProductCard
+                  key={item.id}
+                  id={item.id}
+                  name={item.title}
+                  price={item.price}
+                  image={imageSrc || "/fallback.png"}
+                  description={item.description || ""}
+                  onAddToCart={() => addToCart(item)}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Pagination */}

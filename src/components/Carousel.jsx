@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from "react"
+import { Link } from "react-router-dom"
 import { getData } from "../context/DataContext"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
-import { Category } from "./Category"
 import bgcarousel from "../assets/bg_carousel.png"
 
 
@@ -92,36 +92,29 @@ const Carousel = () => {
                 style={{ backgroundImage: `url(${bgcarousel})` }}
               />
 
-              <div className="absolute inset-0 bg-black/20 z-0" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#5A2A55]/80 via-black/30 to-transparent z-0" />
 
               <div className="relative z-10 max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-10 justify-between items-center md:h-[600px] py-10">
 
                 <div className="space-y-6 max-w-[500px] text-center md:text-left">
-                  
-                  <h3 className="text-black font-semibold text-sm leading-relaxed">
-                    Welcome to MELA, your one-stop destination for a wide variety of
-                    quality products designed to make everyday life easier. We offer 
-                    items across categories such as beauty, skin care, fragrances, 
-                    home décor, furniture, groceries, and kitchen accessories. 
-                    Our collection also includes fashion products like men’s 
-                    shirts, shoes, and watches to keep your style updated. 
-                    For tech lovers, we provide smartphones, laptops, mobile 
-                    accessories, and motorcycle gear. At MELA, our goal is to 
-                    deliver convenience, affordability, and a seamless online 
-                    shopping experience for every customer.
-                  </h3>
 
-                  <h1 className="text-3xl md:text-4xl font-bold uppercase text-white drop-shadow-lg">
+                  <span className="inline-block bg-pink-400/30 border border-pink-300 text-pink-200 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                    New Arrival
+                  </span>
+
+                  <h1 className="text-3xl md:text-5xl font-extrabold uppercase text-white drop-shadow-lg leading-tight">
                     {item.title}
                   </h1>
 
-                  <p className="text-white line-clamp-3 drop-shadow-md">
+                  <p className="text-pink-100 line-clamp-3 drop-shadow-md text-sm md:text-base">
                     {item.description}
                   </p>
 
-                  <button className="bg-[#5A2A55] hover:bg-[#4a2147] text-white px-5 py-2 rounded-md transition">
-                    Shop Now
-                  </button>
+                  <Link to="/products" className="inline-block">
+                    <button className="bg-pink-400 hover:bg-pink-500 text-white font-semibold px-6 py-3 rounded-full transition shadow-lg hover:shadow-pink-400/50">
+                      Shop Now
+                    </button>
+                  </Link>
                 </div>
 
 
@@ -140,8 +133,6 @@ const Carousel = () => {
           )
         })}
       </Slider>
-
-      <Category />
     </div>
   )
 }

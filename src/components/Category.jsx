@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { getData } from '../context/DataContext'
-import bgcarousel from '../assets/bg_carousel.png'
 
 export const Category = () => {
 
@@ -21,31 +20,26 @@ export const Category = () => {
   const secondRow = categoryOnlyData.slice(8)
 
   return (
-    <div className=" relative bg-[url('/src/assets/bg_carousel.png')] py-10">
-      <div className="absolute inset-0 bg-black/10 z-0" />
+    <div className="bg-gradient-to-br from-pink-50 via-white to-rose-50 py-12 border-y border-pink-100">
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 space-y-6">
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-          {firstRow.map((item, index) => (
-            <button
-              key={index}
-              className="uppercase text-sm font-semibold text-blue-900 
-                         bg-transparent hover:bg-gray-400/50 border border-gray-200
-                         px-4 py-2 rounded-md hover:scale-105 transition-all duration-300"
-            >
-              {item}
-            </button>
-          ))}
+        <div className="flex items-center gap-3">
+          <span className="w-1 h-7 bg-pink-400 rounded-full inline-block" />
+          <h2 className="text-xl md:text-2xl font-bold text-[#5A2A55]">
+            Shop by Category
+          </h2>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
-          {secondRow.map((item, index) => (
+        <div className="flex flex-wrap gap-3">
+          {categoryOnlyData.map((item, index) => (
             <button
               key={index}
-              className="uppercase text-sm font-semibold text-blue-900 
-                         bg-transparent hover:bg-gray-400/50 border border-gray-200
-                         px-4 py-2 rounded-md hover:scale-105 transition-all duration-300"
+              className="capitalize text-sm font-medium text-[#5A2A55]
+                         bg-white hover:bg-pink-400 hover:text-white
+                         border border-pink-200 shadow-sm
+                         px-4 py-2 rounded-full hover:scale-105 hover:shadow-pink-200
+                         transition-all duration-300"
             >
               {item}
             </button>

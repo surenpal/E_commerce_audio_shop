@@ -1,18 +1,21 @@
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const ProductCard = ({ id, name, price, image, description, onAddToCart }) => {
 
   const [added, setAdded] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
   const handleAdd = () => {
     onAddToCart();
-
     setAdded(true);
-
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setAdded(false);
     }, 1000);
   };
@@ -25,7 +28,7 @@ const ProductCard = ({ id, name, price, image, description, onAddToCart }) => {
         <img
           src={image}
           alt={name}
-          className="w-full h-40 object-cover rounded-md mb-3"
+          className="w-full h-40 object-contain rounded-md mb-3"
           onError={(e) => (e.target.src = "/fallback.png")}
         />
 

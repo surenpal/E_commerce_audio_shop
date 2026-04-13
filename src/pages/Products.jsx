@@ -69,13 +69,13 @@ const Product = ({ addToCart }) => {
     <div className="max-w-7xl mx-auto px-4 py-10">
 
       {/* Banner */}
-      <div className="w-full bg-gradient-to-r from-pink-300 via-pink-300 to-pink-300 py-3 shadow-lg backdrop-blur-sm text-white rounded-lg p-4 mb-10 flex justify-between items-center">
+      <div className="w-full bg-gradient-to-r from-[#5A2A55] via-pink-600 to-pink-400 rounded-xl p-4 mb-10 flex justify-between items-center shadow-lg">
 
-        <div className="text-lg font-semibold text-gray-500">
+        <div className="text-base md:text-lg font-semibold text-pink-100">
           Recommended for You
         </div>
 
-        <div className="font-bold px-2 py-3 bg-pink-400 text-black rounded-md">
+        <div className="font-bold px-4 py-2 bg-white text-[#5A2A55] rounded-full text-sm md:text-base shadow">
           Big Sale • Up to 40% Off
         </div>
 
@@ -88,12 +88,13 @@ const Product = ({ addToCart }) => {
           <FilterSection onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="md:col-span-2 bg-white shadow-md rounded-lg overflow-hidden h-52 md:h-full">
+        <div className="hidden md:block md:col-span-2 bg-white shadow-md rounded-lg overflow-hidden md:h-full">
           <video
             src="/shopping.mp4"
             autoPlay
             loop
             muted
+            playsInline
             className="w-full h-full object-cover"
           />
         </div>
@@ -132,23 +133,65 @@ const Product = ({ addToCart }) => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-10 gap-2 flex-wrap">
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-10 gap-2 flex-wrap items-center">
 
-        {[...Array(totalPages)].map((_, index) => (
+          {/* Prev */}
           <button
-            key={index}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`px-4 py-2 rounded-md ${
-              currentPage === index + 1
-                ? "bg-pink-500 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
-            }`}
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-2 rounded-md bg-gray-200 hover:bg-gray-300 disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {index + 1}
+            ‹
           </button>
-        ))}
 
-      </div>
+          {/* Windowed page numbers */}
+          {(() => {
+            const pages = [];
+            const delta = 2;
+            const left = Math.max(2, currentPage - delta);
+            const right = Math.min(totalPages - 1, currentPage + delta);
+
+            // First page always shown
+            pages.push(1);
+
+            if (left > 2) pages.push("...");
+            for (let i = left; i <= right; i++) pages.push(i);
+            if (right < totalPages - 1) pages.push("...");
+
+            // Last page always shown
+            if (totalPages > 1) pages.push(totalPages);
+
+            return pages.map((page, i) =>
+              page === "..." ? (
+                <span key={`ellipsis-${i}`} className="px-2 text-gray-400">…</span>
+              ) : (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-4 py-2 rounded-md ${
+                    currentPage === page
+                      ? "bg-pink-500 text-white font-semibold"
+                      : "bg-gray-200 hover:bg-gray-300"
+                  }`}
+                >
+                  {page}
+                </button>
+              )
+            );
+          })()}
+
+          {/* Next */}
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-2 rounded-md bg-gray-200 hover:bg-gray-300 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            ›
+          </button>
+
+        </div>
+      )}
 
     </div>
   );

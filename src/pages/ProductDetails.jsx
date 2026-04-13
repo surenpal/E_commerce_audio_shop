@@ -96,7 +96,6 @@ function ProductDetails({ addToCart }) {
           >
             Add to Cart
           </button>
-
         </div>
       </div>
     </div>
